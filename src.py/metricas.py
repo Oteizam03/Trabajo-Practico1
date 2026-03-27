@@ -6,4 +6,14 @@ Created on Thu Mar 26 15:24:10 2026
 @author: milagrosoteiza
 """
 
-metricas
+from cargar_datos_1 import parsear_linea, cargar_datos
+
+def calcular_hits_totales(datos: list):
+    linea = parsear_linea()
+    datos = cargar_datos(linea)
+    hits = 0
+    for diccionario in datos:
+        if diccionario["hit"] == True:
+            hits += 1
+    return hits
+    
