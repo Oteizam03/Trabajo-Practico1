@@ -17,3 +17,12 @@ def calcular_hits_totales(datos: list):
             hits += 1
     return hits
     
+def calcular_tiempo_primer_hit(datos: list):
+    linea = parsear_linea()
+    datos = cargar_datos(linea)
+    for valor in datos:
+        if valor["hit"] == True:
+            return valor["tiempo"]      
+
+
+
