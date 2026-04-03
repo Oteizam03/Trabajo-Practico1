@@ -12,7 +12,22 @@ with open ("datos.cvs" , "r") as archivo:
  
     
 def parsear_linea(lineas:str):
-    
+
+    """
+    La siguiente funcion separa los datos, id, tiempo, x, y, hiy y condicion para cada participante para asi, almacenar los datos individuales de cada participante en un diccionario.
+
+    Parameters
+    ----------
+    lineas : str
+        es una linea de texto que contiene la informacion de un participante.
+
+    Returns
+    -------
+    registro : Dict
+        contiene los valores de un solo participante, como clave la categoria. Ya sea el id, el tiempo, etc y como clave el valor indicado para ese participante.
+
+    """
+
     registro = {}
     for linea in lineas:
         lista_separada = linea.split(",")
@@ -32,6 +47,20 @@ def parsear_linea(lineas:str):
             return registro
            
 def cargar_datos (ruta:str):
+    """
+    su funcion es almacenar en una lista cada diccionario de la funcion parsear_datos. Para asi, tener los valores de todos los participantes ordenados en cada diccionario individual
+
+    Parameters
+    ----------
+    ruta : str
+        DESCRIPTION.
+
+    Returns
+    -------
+    datos : list
+        es una lista que contiene cada registro de la funcion a la que llama. quedaria cada registro de cada individuo.
+
+    """
     
     with open ("datos.cvs" , "r") as archivo:
         datos = []
