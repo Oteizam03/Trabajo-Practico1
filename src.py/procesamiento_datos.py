@@ -16,3 +16,4 @@ def filtrar_por_participante(datos: list, id_participante: int):
         if id_participante == dic["id_participante"]:
             return dic
         
+        
