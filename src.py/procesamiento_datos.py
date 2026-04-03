@@ -6,6 +6,7 @@ Created on Thu Mar 26 15:23:43 2026
 @author: milagrosoteiza
 """
 
+
 from cargar_datos_1 import parsear_linea, cargar_datos
 
 def filtrar_por_participante(datos: list, id_participante: int):
@@ -14,3 +15,4 @@ def filtrar_por_participante(datos: list, id_participante: int):
     for dic in datos:
         if id_participante == dic["id_participante"]:
             return dic       
+
