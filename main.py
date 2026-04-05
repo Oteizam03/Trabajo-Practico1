@@ -7,3 +7,5 @@ Created on Sun Apr  5 16:38:06 2026
 """
 
 #main.py
+#Se encarga de orquestar todo el flujo del programa
+#cargar → validar → procesar → analizar → mostrar
