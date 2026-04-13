@@ -1,11 +1,22 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun Apr  5 16:38:06 2026
+Created on Mon Apr 13 14:18:05 2026
 
-@author: milagrosoteiza
+@author: Delfina
 """
 
-#main.py
-#Se encarga de orquestar todo el flujo del programa
-#cargar → validar → procesar → analizar → mostrar
+ruta = "datos/MotionLab+mock_data.csv"
+
+from cargar_datos_1 import parsear_linea, cargar_datos
+from metricas import calcular_hits_totales, calcular_tiempo_primer_hit
+from procesamiento_datos import filtrar_por_participante
+
+with open ("MotionLab_mock_data.csv", "r") as archivo:
+    for linea in archivo:
+        print(archivo)
+        
+parseo = parsear_linea(linea)
+datos = cargar_datos(ruta)
+hits = calcular_hits_totales(datos)
+tiempo_primer = calcular_tiempo_primer_hit(datos)
+filtro = filtrar_por_participante(datos, id_participante)

@@ -53,7 +53,7 @@ def cargar_datos (ruta:str):
     Parameters
     ----------
     ruta : str
-        direccion donde esta el docuemento que tiene que analizar
+        DESCRIPTION.
 
     Returns
     -------
