@@ -5,7 +5,7 @@ Created on Mon Apr 13 14:18:05 2026
 @author: Delfina
 """
 
-ruta = "datos/MotionLab+mock_data.csv"
+ruta = "datos/MotionLab_mock_data.csv"
 
 from src.cargar_datos_1 import parsear_linea, cargar_datos
 from src.metricas import calcular_hits_totales, calcular_tiempo_primer_hit
