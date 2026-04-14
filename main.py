@@ -15,8 +15,18 @@ with open ("MotionLab_mock_data.csv", "r") as archivo:
     for linea in archivo:
         print(archivo)
         
+id_participante = input("Ingrese un numero de cuatro digitos: ")
+        
 parseo = parsear_linea(linea)
 datos = cargar_datos(ruta)
 hits = calcular_hits_totales(datos)
 tiempo_primer = calcular_tiempo_primer_hit(datos)
 filtro = filtrar_por_participante(datos, id_participante)
+
+print(parseo)
+print(datos)
+print(hits)
+print(tiempo_primer)
+print(filtro)
+
+
