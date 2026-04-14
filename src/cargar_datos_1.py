@@ -6,7 +6,7 @@ Created on Thu Mar 26 15:22:53 2026
 @author: milagrosoteiza
 """
 #cargar_datos
-with open ("datos.cvs" , "r") as archivo:
+with open ("datos/MotionLab+mock_data.csv" , "r") as archivo:
     for linea in archivo:
         print(linea)
  

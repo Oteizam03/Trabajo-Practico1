@@ -7,13 +7,13 @@ Created on Mon Apr 13 14:18:05 2026
 
 ruta = "datos/MotionLab+mock_data.csv"
 
-from cargar_datos_1 import parsear_linea, cargar_datos
-from metricas import calcular_hits_totales, calcular_tiempo_primer_hit
-from procesamiento_datos import filtrar_por_participante
+from src.cargar_datos_1 import parsear_linea, cargar_datos
+from src.metricas import calcular_hits_totales, calcular_tiempo_primer_hit
+from src.procesamiento_datos import filtrar_por_participante
 
-with open ("MotionLab_mock_data.csv", "r") as archivo:
+with open (ruta, "r") as archivo:
     for linea in archivo:
-        print(archivo)
+        print(linea)
         
 id_participante = input("Ingrese un numero de cuatro digitos: ")
         
@@ -28,5 +28,6 @@ print(datos)
 print(hits)
 print(tiempo_primer)
 print(filtro)
+
 
 
