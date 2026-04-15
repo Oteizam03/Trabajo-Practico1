@@ -29,5 +29,3 @@ print(hits)
 print(tiempo_primer)
 print(filtro)
 
-
-
