@@ -51,6 +51,7 @@ def calcular_tiempo_primer_hit(datos: list):
     for valor in datos:
         if valor["hit"] == True:
             return valor["tiempo"]      
+        
 
 
 
