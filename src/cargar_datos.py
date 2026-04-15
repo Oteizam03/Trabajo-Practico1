@@ -73,3 +73,4 @@ def cargar_datos (ruta:str):
     
     
     
+    
