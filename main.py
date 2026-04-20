@@ -14,19 +14,22 @@ from src.procesamiento_datos import filtrar_por_participante
 with open (ruta, "r") as archivo:
     for linea in archivo:
         print(linea)
-        
-id_participante = input("Ingrese un numero: ")
-        
-parseo = parsear_linea(linea)
-datos = cargar_datos(ruta)
-filtro = filtrar_por_participante(datos, id_participante)
-hits = calcular_hits_totales(datos)
-tiempo_primer = calcular_tiempo_primer_hit(datos)
 
+try:
+    id_participante = input("Ingrese un numero: ")
+        
+    parseo = parsear_linea(linea)
+    datos = cargar_datos(ruta)
+    filtro = filtrar_por_participante(datos, id_participante)
+    hits = calcular_hits_totales(datos)
+    tiempo_primer = calcular_tiempo_primer_hit(datos)
+except ValueError as error:
+    print(error)
 
-print(parseo)
-print(datos)
-print(hits)
-print(tiempo_primer)
-print(filtro)
+else:
+    print(parseo)
+    print(datos)
+    print(filtro)
+    print(hits)
+    print(tiempo_primer)
 
