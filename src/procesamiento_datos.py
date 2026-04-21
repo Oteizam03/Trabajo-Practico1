@@ -7,7 +7,7 @@ Created on Thu Mar 26 15:23:43 2026
 """
 
 
-from src.cargar_datos import parsear_linea, cargar_datos
+#from src.cargar_datos import parsear_linea, cargar_datos
 
 def filtrar_por_participante(datos: list, id_participante: int):
     '''

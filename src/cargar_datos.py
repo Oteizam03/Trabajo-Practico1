@@ -6,10 +6,6 @@ Created on Thu Mar 26 15:22:53 2026
 @author: milagrosoteiza
 """
 #cargar_datos
-with open ("datos/MotionLab_mock_data.csv" , "r") as archivo:
-    for linea in archivo:
-        print(linea)
- 
     
 def parsear_linea(lineas:str):
 
@@ -30,7 +26,7 @@ def parsear_linea(lineas:str):
 
    
     #for linea in lineas:
-    lista_separada = linea.strip().split(",")
+    lista_separada = lineas.strip().split(",")
     if len(lista_separada) != 6:
         raise ValueError("La linea no tiene la cantidad de columnas necesarias")
     registro = {}

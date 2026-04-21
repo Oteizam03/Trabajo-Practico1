@@ -6,7 +6,7 @@ Created on Thu Mar 26 15:24:10 2026
 @author: milagrosoteiza
 """
 
-from src.cargar_datos import parsear_linea, cargar_datos
+#from src.cargar_datos import parsear_linea, cargar_datos
 
 def calcular_hits_totales(datos: list):
     """
