@@ -26,9 +26,12 @@ def filtrar_por_participante(datos: list, id_participante: int):
         diccionario que contiene los datos correspondientes a un alumno.
 
     '''
-    linea = parsear_linea()
-    datos = cargar_datos(linea)
+    
     for dic in datos:
-        if id_participante == dic["id_participante"]:
-            return dic       
+        if dic["id_participante"] == id_participante:
+            return dic
+
+    return None
+
+   
 
