@@ -15,6 +15,7 @@ with open (ruta, "r") as archivo:
     for linea in archivo:
         print(linea)
 
+
 try:
     id_participante = input("Ingrese un numero: ")
         
@@ -23,6 +24,7 @@ try:
     filtro = filtrar_por_participante(datos, id_participante)
     hits = calcular_hits_totales(datos)
     tiempo_primer = calcular_tiempo_primer_hit(datos)
+    
 except ValueError as error:
     print(error)
 

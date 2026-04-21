@@ -39,6 +39,7 @@ def parsear_linea(lineas:str):
             if len(lista_separada) > 1:
                 tiempo = float(lista_separada[1])
                 registro["tiempo"] = tiempo
+                
             x = float(lista_separada[2])
             registro["x"] = x
             y = float(lista_separada[3])
@@ -51,6 +52,7 @@ def parsear_linea(lineas:str):
             condicion = str(lista_separada[5])
             registro["condicion"] = condicion
             return registro
+        
            
 def cargar_datos (ruta:str):
     """
@@ -67,14 +69,20 @@ def cargar_datos (ruta:str):
         es una lista que contiene cada registro de la funcion a la que llama. quedaria cada registro de cada individuo.
 
     """
+    datos = []
     
-    with open ("datos.cvs" , "r") as archivo:
-        datos = []
-        for linea in archivo:
-            print(linea)
-            registro = parsear_linea(linea)
-            datos.append(registro)
-        return datos
+    try:
+        with open(ruta, "r") as archivo:
+            for linea in archivo:
+                registro = parsear_linea(linea)
+
+                if registro is not None:
+                    datos.append(registro)
+
+    except FileNotFoundError:
+        print("Archivo no encontrado")
+    return datos
+
     
     
     

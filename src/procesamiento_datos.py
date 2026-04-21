@@ -22,7 +22,7 @@ def filtrar_por_participante(datos: list, id_participante: int):
 
     Returns
     -------
-    dic : TYPE
+    dic : dicc
         diccionario que contiene los datos correspondientes a un alumno.
 
     '''
