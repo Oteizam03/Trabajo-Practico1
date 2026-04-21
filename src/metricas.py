@@ -6,7 +6,7 @@ Created on Thu Mar 26 15:24:10 2026
 @author: milagrosoteiza
 """
 
-from src.cargar_datos import parsear_linea, cargar_datos
+#from src.cargar_datos import parsear_linea, cargar_datos
 
 def calcular_hits_totales(datos: list):
     """
@@ -23,8 +23,7 @@ def calcular_hits_totales(datos: list):
         es la cantidad de hits que hubo en todo el archivo.
 
     """
-    linea = parsear_linea()
-    datos = cargar_datos(linea)
+   
     hits = 0
     for diccionario in datos:
         if diccionario["hit"] == True:
@@ -46,8 +45,7 @@ def calcular_tiempo_primer_hit(datos: list):
         es el tiempo numerico que tardo el participante con el primer hit.
 
     """
-    linea = parsear_linea()
-    datos = cargar_datos(linea)
+   
     for valor in datos:
         if valor["hit"] == True:
             return valor["tiempo"]

@@ -6,10 +6,6 @@ Created on Thu Mar 26 15:22:53 2026
 @author: milagrosoteiza
 """
 #cargar_datos
-with open ("datos/MotionLab_mock_data.csv" , "r") as archivo:
-    for linea in archivo:
-        print(linea)
- 
     
 def parsear_linea(lineas:str):
 
@@ -28,29 +24,34 @@ def parsear_linea(lineas:str):
 
     """
 
+
+    if lineas.strip() == "":
+        return None 
+    
+    lista_separada = lineas.strip().split(",")
+    if len(lista_separada) != 6:
+        raise ValueError("La linea no tiene la cantidad de columnas necesarias")
     registro = {}
-    for linea in lineas:
-        lista_separada = linea.strip().split(",")
-        if len(lista_separada) != 6:
-            raise ValueError("La linea no tiene la cantidad de columnas necesarias")
-        for valor in lista_separada:
-            id_participante = int(lista_separada[0])
-            registro["id_participante"] = id_participante
-            if len(lista_separada) > 1:
-                tiempo = float(lista_separada[1])
-                registro["tiempo"] = tiempo
-            x = float(lista_separada[2])
-            registro["x"] = x
-            y = float(lista_separada[3])
-            registro["y"] = y
-            hit = bool(lista_separada[4])
-            if hit != bool:
-                raise ValueError("El valor de hit no es valido")
-            else:
-                registro["hit"] = hit
-            condicion = str(lista_separada[5])
-            registro["condicion"] = condicion
-            return registro
+
+    registro["id_participante"] = int(lista_separada[0])
+    registro["tiempo"] = float(lista_separada[1])
+    registro["x"] = float(lista_separada[2])
+    registro["y"] = float(lista_separada[3])
+
+    if lista_separada[4] == "True":
+        registro["hit"] = True
+    elif lista_separada[4] == "False":
+        registro["hit"] = False
+    else:
+        raise ValueError("el valor del Hit es inválido")
+
+    if lista_separada[5] not in ["competencia", "cooperacion"]:
+        raise ValueError("condición inválida")
+        
+    registro["condicion"] = lista_separada[5]
+    return registro
+
+
            
 def cargar_datos (ruta:str):
     """
@@ -67,14 +68,20 @@ def cargar_datos (ruta:str):
         es una lista que contiene cada registro de la funcion a la que llama. quedaria cada registro de cada individuo.
 
     """
+    datos = []
     
-    with open ("datos.cvs" , "r") as archivo:
-        datos = []
-        for linea in archivo:
-            print(linea)
-            registro = parsear_linea(linea)
-            datos.append(registro)
-        return datos
+    try:
+        with open(ruta, "r") as archivo:
+            for linea in archivo:
+                registro = parsear_linea(linea)
+
+                if registro is not None:
+                    datos.append(registro)
+
+    except FileNotFoundError:
+        print("Archivo no encontrado")
+    return datos
+
     
     
     

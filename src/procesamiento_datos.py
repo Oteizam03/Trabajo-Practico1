@@ -7,7 +7,7 @@ Created on Thu Mar 26 15:23:43 2026
 """
 
 
-from src.cargar_datos import parsear_linea, cargar_datos
+#from src.cargar_datos import parsear_linea, cargar_datos
 
 def filtrar_por_participante(datos: list, id_participante: int):
     '''
@@ -22,13 +22,16 @@ def filtrar_por_participante(datos: list, id_participante: int):
 
     Returns
     -------
-    dic : TYPE
+    dic : dicc
         diccionario que contiene los datos correspondientes a un alumno.
 
     '''
-    linea = parsear_linea()
-    datos = cargar_datos(linea)
+    
     for dic in datos:
-        if id_participante == dic["id_participante"]:
-            return dic       
+        if dic["id_participante"] == id_participante:
+            return dic
+
+    return None
+
+   
 
