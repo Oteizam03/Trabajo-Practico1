@@ -12,11 +12,23 @@ def validar_registro(registro: dict):
         float(registro["tiempo"])
         float(registro["x"])
         float(registro["y"])
+        
+        if registro["tiempo"] < 0:
+            return False
+        
+        if registro["x"] < 0 or registro["x"] > 100:
+            return False
+    
+        if registro["y"] < 0 or registro["y"] > 100:
+            return False
 
         if registro["hit"] != True and registro["hit"] != False:
             return False
+
 
         return True
 
     except:
         return False
+    
+    

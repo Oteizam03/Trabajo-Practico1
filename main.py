@@ -16,7 +16,17 @@ try:
     id_participante = int(input("Ingrese un numero: "))
         
     datos = cargar_datos(ruta)
+    if len(datos) == 0:
+        print("No hay datos")
+
+    for i in range(1, len(datos)):
+        if datos[i]["tiempo"] < datos[i-1]["tiempo"]:
+            print("Error: el tiempo no ess creciente")
+          
     filtro = filtrar_por_participante(datos, id_participante)
+    if filtro is None:
+        print("el participante no fue encontrado")
+
     hits = calcular_hits_totales(datos)
     tiempo_primer = calcular_tiempo_primer_hit(datos)
     

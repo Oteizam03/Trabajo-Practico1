@@ -24,8 +24,10 @@ def parsear_linea(lineas:str):
 
     """
 
-   
-    #for linea in lineas:
+
+    if lineas.strip() == "":
+        return None 
+    
     lista_separada = lineas.strip().split(",")
     if len(lista_separada) != 6:
         raise ValueError("La linea no tiene la cantidad de columnas necesarias")
@@ -43,8 +45,10 @@ def parsear_linea(lineas:str):
     else:
         raise ValueError("el valor del Hit es inválido")
 
+    if lista_separada[5] not in ["competencia", "cooperacion"]:
+        raise ValueError("condición inválida")
+        
     registro["condicion"] = lista_separada[5]
-    
     return registro
 
 
