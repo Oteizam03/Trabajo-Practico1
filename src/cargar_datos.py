@@ -48,6 +48,8 @@ def parsear_linea(lineas:str):
         raise ValueError("el valor del Hit es inválido")
 
     registro["condicion"] = lista_separada[5]
+    
+    return registro
 
 
            
