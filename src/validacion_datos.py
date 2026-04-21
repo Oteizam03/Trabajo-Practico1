@@ -7,6 +7,20 @@ Created on Thu Mar 26 15:23:25 2026
 """
 
 def validar_registro(registro: dict):
+    '''
+    Verifica los tipos de datos y los rangos de los datos del registro
+
+    Parameters
+    ----------
+    registro : dict
+        contiene los valores de un solo participante, como clave la categoria. Ya sea el id, el tiempo, etc y como clave el valor indicado para ese participante.
+
+    Returns
+    -------
+    bool
+        si no cumple con las condiciones se devuelve un False, sino un True
+
+    '''
     try:
         int(registro["id_participante"])
         float(registro["tiempo"])
