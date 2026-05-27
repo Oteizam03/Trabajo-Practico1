@@ -14,6 +14,16 @@ def cargar_datos(ruta: str) -> pd.DataFrame:
     """
     Carga el archivo CSV directamente en un DataFrame de Pandas y
     realiza todas las validaciones vectorizadas de forma masiva.
+
+    Parameters
+    ----------
+    ruta : str
+        La ruta física del archivo CSV con los datos a cargar.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        Un DataFrame de Pandas con todos los registros validados.
     """
     # 1. Validar si el archivo existe físicamente
     if not os.path.exists(ruta):
