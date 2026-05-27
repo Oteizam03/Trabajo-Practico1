@@ -9,7 +9,9 @@ Created on Thu Mar 26 15:23:43 2026
 
 #from src.cargar_datos import parsear_linea, cargar_datos
 
-def filtrar_por_participante(datos: list, id_participante: int):
+import pandas as pd
+
+def filtrar_por_participante(df: pd.DataFrame, id_participante: int) -> pd.DataFrame:
     '''
     se encarga de seleccionar los datos correspondientes de un alumno y devolverlos en un diccionario
 
@@ -27,11 +29,14 @@ def filtrar_por_participante(datos: list, id_participante: int):
 
     '''
     
-    for dic in datos:
-        if dic["id_participante"] == id_participante:
-            return dic
-
-    return None
+    # Filtramos el DataFrame por la columna id_participante
+    df_filtrado = df[df['id_participante'] == id_participante]
+    
+    # Si el resultado está vacío, significa que el participante no existe
+    if df_filtrado.empty:
+        return None
+        
+    return df_filtrado
 
    
 

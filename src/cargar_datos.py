@@ -6,84 +6,44 @@ Created on Thu Mar 26 15:22:53 2026
 @author: milagrosoteiza
 """
 #cargar_datos
-    
-def parsear_linea(lineas:str):
 
+import pandas as pd
+import os
+
+def cargar_datos(ruta: str) -> pd.DataFrame:
     """
-    La siguiente funcion separa los datos, id, tiempo, x, y, hiy y condicion para cada participante para asi, almacenar los datos individuales de cada participante en un diccionario.
-
-    Parameters
-    ----------
-    lineas : str
-        es una linea de texto que contiene la informacion de un participante.
-
-    Returns
-    -------
-    registro : Dict
-        contiene los valores de un solo participante, como clave la categoria. Ya sea el id, el tiempo, etc y como clave el valor indicado para ese participante.
-
+    Carga el archivo CSV directamente en un DataFrame de Pandas y
+    realiza todas las validaciones vectorizadas de forma masiva.
     """
-
-
-    if lineas.strip() == "":
-        return None 
-    
-    lista_separada = lineas.strip().split(",")
-    if len(lista_separada) != 6:
-        raise ValueError("La linea no tiene la cantidad de columnas necesarias")
-    registro = {}
-
-    registro["id_participante"] = int(lista_separada[0])
-    registro["tiempo"] = float(lista_separada[1])
-    registro["x"] = float(lista_separada[2])
-    registro["y"] = float(lista_separada[3])
-
-    if lista_separada[4] == "True":
-        registro["hit"] = True
-    elif lista_separada[4] == "False":
-        registro["hit"] = False
-    else:
-        raise ValueError("el valor del Hit es inválido")
-
-    if lista_separada[5] not in ["competencia", "cooperacion"]:
-        raise ValueError("condición inválida")
+    # 1. Validar si el archivo existe físicamente
+    if not os.path.exists(ruta):
+        raise FileNotFoundError(f"No se encontró el archivo en la ruta: {ruta}")
         
-    registro["condicion"] = lista_separada[5]
-    return registro
-
-
-           
-def cargar_datos (ruta:str):
-    """
-    su funcion es almacenar en una lista cada diccionario de la funcion parsear_datos. Para asi, tener los valores de todos los participantes ordenados en cada diccionario individual
-
-    Parameters
-    ----------
-    ruta : str
-        DESCRIPTION.
-
-    Returns
-    -------
-    datos : list
-        es una lista que contiene cada registro de la funcion a la que llama. quedaria cada registro de cada individuo.
-
-    """
-    datos = []
+    # 2. Carga inmediata del CSV
+    df = pd.read_csv(ruta)
     
-    try:
-        with open(ruta, "r") as archivo:
-            for linea in archivo:
-                registro = parsear_linea(linea)
-
-                if registro is not None:
-                    datos.append(registro)
-
-    except FileNotFoundError:
-        print("Archivo no encontrado")
-    return datos
+    # 3. Validación de campos vacíos o nulos (NaN)
+    if df.isna().any().any():
+        raise ValueError("Error crítico: El archivo contiene campos vacíos o valores nulos (NaN).")
+        
+    # 4. Validar rangos lógicos (sin bucles)
+    if (df['tiempo'] < 0).any():
+        raise ValueError("Error crítico: Hay tiempos con valores negativos.")
+        
+    if (df['x'] < 0).any() or (df['x'] > 100).any():
+        raise ValueError("Error crítico: Coordenadas X fuera del rango [0, 100].")
+        
+    if (df['y'] < 0).any() or (df['y'] > 100).any():
+        raise ValueError("Error crítico: Coordenadas Y fuera del rango [0, 100].")
+        
+    # 5. Validar que la columna 'condicion' contenga solo valores válidos
+    valores_validos = ["competencia", "cooperacion"]
+    if not df['condicion'].isin(valores_validos).all():
+        raise ValueError("Error crítico: El archivo contiene condiciones experimentales inválidas.")
+        
+    return df
 
     
-    
-    
+
     
     

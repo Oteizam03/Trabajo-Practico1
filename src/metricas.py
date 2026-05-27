@@ -6,49 +6,28 @@ Created on Thu Mar 26 15:24:10 2026
 @author: milagrosoteiza
 """
 
-#from src.cargar_datos import parsear_linea, cargar_datos
+import pandas as pd
 
-def calcular_hits_totales(datos: list):
+def calcular_hits_totales(df: pd.DataFrame) -> int:
     """
-    cuenta cantidad de veces en los que hay un hit
-
-    Parameters
-    ----------
-    datos : list
-        es lo que devuelve la fucnion cargar_datos. la lista de dicionarios con los registros
-
-    Returns
-    -------
-    hits : int
-        es la cantidad de hits que hubo en todo el archivo.
-
+    Cuenta la cantidad total de hits en el DataFrame utilizando suma directa.
     """
-   
-    hits = 0
-    for diccionario in datos:
-        if diccionario["hit"] == True:
-            hits += 1
-    return hits
+    return int(df['hit'].sum())
     
-def calcular_tiempo_primer_hit(datos: list):
+def calcular_tiempo_primer_hit(df: pd.DataFrame) -> float:
     """
-    esta funcion busca el primer hit entre los pacientes para devolver el tiempo de ese participante
-
-    Parameters
-    ----------
-    datos : list
-        es lo que devuelve la fucnion cargar_datos. la lista de dicionarios con los registros
-
-    Returns
-    -------
-    la clave de valor["tiempo"]: es un int
-        es el tiempo numerico que tardo el participante con el primer hit.
-
+    Filtra los registros donde hubo un hit y encuentra el menor tiempo registrado.
     """
-   
-    for valor in datos:
-        if valor["hit"] == True:
-            return valor["tiempo"]
+    # Filtramos donde hit sea True
+    df_hits = df[df['hit'] == True]
+    
+    if df_hits.empty:
+        return None # Por si no hubo ningún hit en todo el archivo
+        
+    # Obtenemos el tiempo mínimo de ese grupo filtrado
+    return float(df_hits['tiempo'].min())
+
+
         
         
 
