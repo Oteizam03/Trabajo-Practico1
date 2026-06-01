@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jun  1 11:02:39 2026
+
+@author: milagrosoteiza
+"""
+
+PROMPT INICIAL:
+
+Actuá como un desarrollador experto en Python y en la librería Streamlit. Estoy desarrollando un sistema modular para el análisis de datos de un experimento de comportamiento motor humano (MotionLab).
+
+El sistema ya cuenta con una arquitectura organizada en módulos dentro de una carpeta "src", que incluyen:
+
+- cargar_datos: carga y valida datos desde un archivo CSV utilizando pandas
+- metricas: calcula métricas como cantidad total de hits y tiempo del primer hit
+- procesamiento_datos: permite filtrar datos por participante
+
+Los datos representan series temporales con las siguientes variables:
+- id_participante (int)
+- tiempo (float)
+- x, y (coordenadas espaciales entre 0 y 100)
+- hit (booleano)
+- condicion (valores posibles: "competencia" o "cooperacion")
+
+OBJETIVO:
+
+Desarrollar un archivo app.py utilizando Streamlit que funcione como un dashboard interactivo para visualizar y analizar estos datos.
+
+El dashboard debe:
+
+1. Permitir al usuario subir un archivo CSV mediante st.file_uploader
+2. Validar los datos cargados (sin valores nulos, rangos correctos)
+3. Mostrar métricas clave:
+   - cantidad total de hits
+   - tiempo del primer hit
+4. Permitir ingresar un id de participante y mostrar sus datos filtrados
+5. Generar un gráfico de barras que muestre la cantidad de hits por condición experimental
+6. Mostrar mensajes claros en caso de errores (uso de st.error, st.warning, etc.)
+7. Mantener una estructura clara, reutilizando funciones ya existentes del proyecto (no reescribir lógica innecesaria)
+
+REQUISITOS TÉCNICOS:
+
+- Usar pandas para manipulación de datos
+- Usar matplotlib para gráficos
+- No utilizar estructuras complejas fuera del nivel visto en clase
+- Mantener el código claro, modular y legible
+- Incluir manejo de errores con try/except
+- No asumir que el archivo siempre será correcto
+
+CORRECCIONES REALIZADAS:
+
+- Se agregó manejo de errores para archivos inválidos
+- Se incorporó input del usuario para filtrar por participante
+- Se mejoró la visualización de métricas con st.metric
+- Se integraron funciones del módulo src en lugar de duplicar lógica
+- Se agregaron validaciones básicas sobre el DataFrame
+
+REFLEXIÓN:
+
+El uso de un prompt detallado permitió integrar correctamente la arquitectura modular existente con la interfaz de Streamlit. Especificar las funciones disponibles en el backend fue clave para evitar redundancias y mantener la coherencia del sistema.
+
+Además, definir claramente los objetivos del dashboard permitió obtener una solución alineada con los requisitos de la consigna, incluyendo interacción con el usuario, visualización de métricas y manejo de errores.
